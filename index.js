@@ -184,7 +184,7 @@ const menu = [
     {
         id: 21,
         title:"Watermelon Juice",
-        category:"snaks",
+        category:"beverages",
         price: 60,
         img:"https://media.istockphoto.com/id/838270506/photo/summer-refreshing-detox-smoothie-of-watermelon-and-mint-on-a-white-wooden-background-rustic.jpg?s=612x612&w=0&k=20&c=e4q8qUVUZOc3gA5kwCk7iFFwoV9ET9_wwUF_HE4w7G8=",
         desc: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius adipisci doloribus natus aperiam ut placeat numquam enim, eaque aut quos?"
@@ -193,7 +193,7 @@ const menu = [
     {
         id: 22,
         title:"Muskmelon Juice",
-        category:"snaks",
+        category:"beverages",
         price: 70,
         img:"https://www.archanaskitchen.com/images/archanaskitchen/World_Beverages/Muskmelon_Kharbuj_Juice_Recipe-1.jpg",
         desc: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius adipisci doloribus natus aperiam ut placeat numquam enim, eaque aut quos?"
@@ -202,7 +202,7 @@ const menu = [
     {
         id: 23,
         title:"Apple Juice",
-        category:"snaks",
+        category:"beverages",
         price: 100,
         img:"https://thumbs.dreamstime.com/b/apple-juice-natural-fruits-garden-168362367.jpg",
         desc: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius adipisci doloribus natus aperiam ut placeat numquam enim, eaque aut quos?"
@@ -211,7 +211,7 @@ const menu = [
     {
         id: 24,
         title:"Grape Juice",
-        category:"snaks",
+        category:"beverages",
         price: 100,
         img:"https://www.waters.com/content/dam/waters/en/Photography/stock/food-and-environment/stock-grape-juice-in-glass.jpg",
         desc: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius adipisci doloribus natus aperiam ut placeat numquam enim, eaque aut quos?"
@@ -220,7 +220,7 @@ const menu = [
     {
         id: 25,
         title:"Filtered Coffee",
-        category:"snaks",
+        category:"beverages",
         price: 20,
         img:"https://img.freepik.com/premium-photo/south-indian-filter-coffee-served-traditional-brass-stainless-steel-cup_466689-83533.jpg?w=2000",
         desc: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius adipisci doloribus natus aperiam ut placeat numquam enim, eaque aut quos?"
@@ -229,38 +229,23 @@ const menu = [
     {
         id: 26,
         title:"Tea",
-        category:"snaks",
+        category:"beverages",
         price: 20,
         img:"https://media.istockphoto.com/id/864607392/photo/image-of-a-glass-of-tea-in-street-market.jpg?s=170667a&w=0&k=20&c=tB55jlq3zwOJWZepbh-FzlADsSgiYCy-LJqUEHoQlsk=",
         desc: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius adipisci doloribus natus aperiam ut placeat numquam enim, eaque aut quos?"
     },
 ]
 
-
+const category = document.querySelector(".filterbuttons")
 const sectionCenter = document.querySelector(".section-center");
-const filterbtns = document.querySelectorAll(".filter-btn");
+
 
 //to render all the menu items ----
 window.addEventListener('DOMContentLoaded',function(){
     displayMenuItems(menu);
-})
 
-// to filter and render the menu items ----
-filterbtns.forEach(function(btn){
-    btn.addEventListener('click',function(e){
-        const category = e.currentTarget.dataset.id ;
-        const filteredMenu= menu.filter(function(menuItems){
-            if(menuItems.category === category){
-                return menuItems
-            }
-        })
-        if(category === 'all'){
-            displayMenuItems(menu);
-        }
-        else{
-            displayMenuItems(filteredMenu);
-        }
-    })
+    displayMenuButtons();
+    
 })
 
 
@@ -283,3 +268,43 @@ const displayMenuItems =(menuItems) =>{
     sectionCenter.innerHTML = displayMenu
 }
 
+
+
+// to display fully functional filter buttons 
+
+const displayMenuButtons = () => {
+    
+// to print the categories on the display
+const categories = menu.reduce((values,item) =>{
+    if(!values.includes(item.category)){
+        values.push(item.category)
+    }
+    return values;
+},['all'])
+
+const categoryBtns = categories.map((category) => {
+    return `<button class="filter-btn" type="button" data-id=${category}>${category}</button>`
+}).join("")
+
+
+category.innerHTML = categoryBtns;
+const filterbtns = document.querySelectorAll(".filter-btn");
+
+// to filter and render the menu items ----
+filterbtns.forEach(function(btn){
+btn.addEventListener('click',function(e){
+    const category = e.currentTarget.dataset.id ;
+    const filteredMenu= menu.filter(function(menuItems){
+        if(menuItems.category === category){
+            return menuItems
+        }
+    })
+    if(category === 'all'){
+        displayMenuItems(menu);
+    }
+    else{
+        displayMenuItems(filteredMenu);
+    }
+})
+})
+}
