@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+
+}
+html{
+    /* height: 100vh; */
+    width: 100%;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.title div{
+    border-bottom: 2px solid rgba(128, 128, 128, 0.447);
+    margin-inline: 20px;
+    
+}
+
+.title h2{
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.menu-item img{
+    width: 150px;
+
+}
+
+.section-center{
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    width: 90vw ;
+    height: max-content;
+    flex-wrap: wrap;
+}
+
+.menu-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    width: 20em;
+    flex-grow: 1;
+    
+}
+.menu-item:hover{
+    /* box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.068); */
+    background-color: #f6f6f6;
+}
+
+.item-info header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+    border-bottom: 2px solid orange;
+}
+
+.item-info p{
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.filter-btn{
+    background-color: transparent;
+    border: 2px solid orange;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px 10px;
+    font-size:9px;
+    font-weight:550;
+    color:orange;
+}
+.filter-btn:hover{
+    background-color: orange;
+    color: #fff;
+}
