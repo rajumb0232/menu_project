@@ -282,6 +282,7 @@ const categories = menu.reduce((values,item) =>{
     return values;
 },['all'])
 
+// creating buttons 
 const categoryBtns = categories.map((category) => {
     return `<button class="filter-btn" type="button" data-id=${category}>${category}</button>`
 }).join("")
